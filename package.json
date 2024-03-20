@@ -3,7 +3,7 @@
   "scripts": {
     "start": "node book_test.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "axios": "^1.6.8",
     "cheerio": "^1.0.0-rc.12",
     "jsdom": "^24.0.0"
