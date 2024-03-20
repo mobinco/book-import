@@ -2,7 +2,7 @@
 
 Getting documents data from http://opac.nlai.ir & https://samanpl.ir
 
-ورود اطلاعات اسناد از سایت کتابنشاسی ملی و نرم افزار سامان
+ورود اطلاعات اسناد از سایت کتابشناسی ملی و نرم افزار سامان
 
 
 # Install
