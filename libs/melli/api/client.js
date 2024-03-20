@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
-import stringSimilarity from 'string-similarity';
+//import stringSimilarity from 'string-similarity';
 import { clean } from '../../../util/string.js'; // Assuming util.js exists and has a clean function similar to the JavaScript version
 
 const baseUrl = 'http://opac.nlai.ir';
@@ -53,11 +53,12 @@ async function getBookURLByISBN(isbn, ...args) {
       const links = document.querySelectorAll("#td2 > a");
       links.forEach((sel) => {
         const title = clean(sel.textContent);
-        let tmp = stringSimilarity.compareTwoStrings(arg, title);
-        if (tmp > score && (tmp > 0.2 || arg.includes(title))) {
+        //let tmp = stringSimilarity.compareTwoStrings(arg, title);
+        //if (tmp > score && (tmp > 0.2 || arg.includes(title))) {
+        if (arg.includes(title)) {
           link = sel.href;
           exists = true;
-          score = tmp;
+          //score = tmp;
         }
       });
     }

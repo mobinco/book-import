@@ -4,6 +4,8 @@ Getting documents data from http://opac.nlai.ir & https://samanpl.ir
 
 ورود اطلاعات اسناد از سایت کتابشناسی ملی و نرم افزار سامان
 
+برگرفته از https://github.com/ketabchi/melli
+
 
 # Install
 <code> npm install github:mobinco/book-import --save </code>
