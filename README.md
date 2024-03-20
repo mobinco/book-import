@@ -8,10 +8,10 @@ Getting documents data from http://opac.nlai.ir & https://samanpl.ir
 
 
 # Install
-<code> npm install github:mobinco/book-import --save </code>
+<code>npm install github:mobinco/book-import --save</code>
 
 # Using
-Check <code> book_test.js </code>.
+Check <code> book_test.js </code>
 
 ```
 import { Book as Melli } from './libs/melli/index.js';
