@@ -3,7 +3,7 @@ import api from './api/client.js';
 // errors
 const ErrNoBook           = "no book found";
 
-export class Book {
+export class Saman {
   constructor(url, doc) {
     this.url = url;
     this.doc = doc;

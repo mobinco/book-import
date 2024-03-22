@@ -12,7 +12,7 @@ const reNumber            = new RegExp('[0-9۰-۹]', '');
 // errors
 const ErrNoBook           = "no book found";
 
-export class Book {
+export class Melli {
   constructor(url, doc) {
     this.url = url;
     this.doc = doc;
@@ -36,13 +36,13 @@ export class Book {
     }
     const res = await axios.get(url);
     const doc = cheerio.load(await res.data);
-    return new Book(url, doc);
+    return new Melli(url, doc);
   }
 
   async NewBook(url) {
     const res = await axios.get(url);
     const doc = cheerio.load(await res.data);
-    return new Book(url, doc);
+    return new Melli(url, doc);
   }
 
   All = () => {

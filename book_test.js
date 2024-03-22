@@ -1,5 +1,5 @@
-import { Book as Melli } from './libs/melli/index.js';
-import { Book as Saman } from './libs/saman/index.js';
+import { Melli } from './libs/melli/index.js';
+import { Saman } from './libs/saman/index.js';
 import { checkSliceEq } from './util/slice.js';
 
 var melli = new Melli();
