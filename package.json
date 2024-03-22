@@ -2,6 +2,7 @@
   "name": "book-import",
   "version": "1.0.0",
   "description": "Getting document data from nlai.ir & samanpl.ir",
+  "type": "module",
   "main": "book_test.js",
   "dependencies": {
     "abab": "^2.0.6",
