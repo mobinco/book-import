@@ -1,5 +1,4 @@
-import { Melli } from './libs/melli/index.js';
-import { Saman } from './libs/saman/index.js';
+import { Melli, Saman } from './index.js';
 import { checkSliceEq } from './util/slice.js';
 
 var melli = new Melli();
