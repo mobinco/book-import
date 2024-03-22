@@ -14,8 +14,7 @@ Getting documents data from http://opac.nlai.ir & https://samanpl.ir
 Check <code> book_test.js </code>
 
 ```
-import { Melli } from 'book_import/libs/saman';
-import { Saman } from './libs/saman/index.js';
+import { Melli, Saman } from 'book_import';
 
 var melli = new Melli();
 var resMelli = await melli.SearchBook('مبین');
