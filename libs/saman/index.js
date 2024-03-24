@@ -1,9 +1,9 @@
-import api from './api/client.js';
+const api = require('./api/client.js');
 
 // errors
 const ErrNoBook           = "no book found";
 
-export class Saman {
+module.exports = class Saman {
   constructor(url, doc) {
     this.url = url;
     this.doc = doc;

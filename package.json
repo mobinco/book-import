@@ -2,7 +2,6 @@
   "name": "book-import",
   "version": "1.0.0",
   "description": "Getting document data from nlai.ir & samanpl.ir",
-  "type": "module",
   "main": "index.js",
   "types": "index.js",
   "dependencies": {

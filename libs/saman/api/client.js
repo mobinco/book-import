@@ -1,5 +1,5 @@
-import axios from 'axios';
-import https from 'https';
+const axios = require('axios');
+const https = require('https');
 
 const baseUrl = 'https://samanpl.ir';
 
@@ -49,4 +49,4 @@ async function getBookById(id, ...args) {
   }
 }
 
-export default { searchBooks, getBookById, baseUrl };
+module.exports = { searchBooks, getBookById, baseUrl };

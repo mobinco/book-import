@@ -30,4 +30,4 @@ function clean(s) {
   return s?.trim();
 }
 
-export { filter, clean };
+module.exports = { filter, clean };

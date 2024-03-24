@@ -1,21 +1,25 @@
-import { Melli, Saman } from './index.js';
-import { checkSliceEq } from './util/slice.js';
+const { Melli, Saman } = require('./index.js');
+const { checkSliceEq } = require('./util/slice.js');
 
-var melli = new Melli();
-var resMelli = await melli.SearchBook('مبین');
-console.log(resMelli);
-if (resMelli.length > 0) {
-    var m = await melli.NewBook(resMelli[0]?.link);
-    console.log(m.All());
+const test = async () => {
+    var melli = new Melli();
+    var resMelli = await melli.SearchBook('مبین');
+    console.log(resMelli);
+    if (resMelli.length > 0) {
+        var m = await melli.NewBook(resMelli[0]?.link);
+        console.log(m.All());
+    }
+    
+    var saman = new Saman();
+    var resSaman = await saman.SearchBook('مبین');
+    console.log(resSaman);
+    if (resSaman.length > 0) {
+        var s = await saman.GetBookById(resSaman[0]?.RecordNumber);
+        console.log(s);
+    }    
 }
 
-var saman = new Saman();
-var resSaman = await saman.SearchBook('مبین');
-console.log(resSaman);
-if (resSaman.length > 0) {
-    var s = await saman.GetBookById(resSaman[0]?.RecordNumber);
-    console.log(s);
-}
+test();
 
 //await TestName();
 

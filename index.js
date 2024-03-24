@@ -1,4 +1,4 @@
-import { Melli } from './libs/melli/index.js';
-import { Saman } from './libs/saman/index.js';
+const Melli = require('./libs/melli/index.js');
+const Saman = require('./libs/saman/index.js');
 
-export { Melli, Saman };
+module.exports = { Melli, Saman };

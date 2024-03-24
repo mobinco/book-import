@@ -1,7 +1,7 @@
-import axios from 'axios';
-import $, * as cheerio from 'cheerio';
-import * as util from '../../util/string.js';
-import api from './api/client.js';
+const axios = require('axios');
+const cheerio = require('cheerio');
+const util = require('../../util/string.js');
+const api = require('./api/client.js');
 
 // variables
 const reTranslators       = new RegExp('(?:(?:[\\[\\(])?(?:\\s)?(?:ترجمه(?:(?:\\x{200c})+ی)?|مترجم(?:ان|ین)?)(?: \\[?و (?:[\\[\\(])?(?:تنظیم|گردآوری|گردآورنده|سرپرستی|تدوین|تالیف|انطباق فرهنگی|ویرایش|بومی\\x{200c}سازی|ترانه\\x{200c}سرا|ترانه سرا|شعرهای|انتخاب|نگارش|ویراستار|بازآفرینی|بررسی|تحقیق|شرح)(?:[\\]\\)])?)?(?:\\s)?(?:[\\]\\)])?)(.+?)(?:؛|\\.|\\]|$)', '')
@@ -12,7 +12,7 @@ const reNumber            = new RegExp('[0-9۰-۹]', '');
 // errors
 const ErrNoBook           = "no book found";
 
-export class Melli {
+module.exports = class Melli {
   constructor(url, doc) {
     this.url = url;
     this.doc = doc;
@@ -307,6 +307,7 @@ export class Melli {
     if (biblioId) return `${api.baseUrl}/opac-prod/bibliographic/${biblioId}`;
     */
     let ret = "";
+    const $ = cheerio.load('<html>');
     this.doc("td").each((i, sel) => {
       if ($(sel).text().indexOf("آدرس ثابت") >= 0 && $(sel).text().length < 100) {
         ret = $(sel).next()?.find('a')?.first()?.attr('href');
@@ -344,6 +345,7 @@ export class Melli {
 
   getField(key) {
     let ret = "";
+    const $ = cheerio.load('<html>');
     this.doc("td").each((i, sel) => {
       if ($(sel).text()?.replace(/\s\s+/g, ' ') === key) {
         ret = $(sel)?.next()?.next()?.text();
@@ -356,6 +358,7 @@ export class Melli {
   
   getFields(key) {
     let arrRet = [];
+    const $ = cheerio.load('<html>');
     this.doc("td").each((i, sel) => {
       if ($(sel).text()?.replace(/\s\s+/g, ' ') === key) {
         arrRet.push($(sel)?.next()?.next()?.text());

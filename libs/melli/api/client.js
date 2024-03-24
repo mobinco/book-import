@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { JSDOM } from 'jsdom';
+const axios = require('axios');
+const { JSDOM } = require('jsdom');
 //import stringSimilarity from 'string-similarity';
-import { clean } from '../../../util/string.js'; // Assuming util.js exists and has a clean function similar to the JavaScript version
+const { clean } = require('../../../util/string.js'); // Assuming util.js exists and has a clean function similar to the JavaScript version
 
 const baseUrl = 'http://opac.nlai.ir';
 
@@ -79,4 +79,4 @@ async function getBookURLByISBN(isbn, ...args) {
   }
 }
 
-export default { searchBooks, getBookURLByISBN, baseUrl };
+module.exports = { searchBooks, getBookURLByISBN, baseUrl };

@@ -33,4 +33,4 @@ function shuffle(ss) {
     }
 }
 
-export { checkSliceEq, sliceContains, shuffle };
+module.exports = { checkSliceEq, sliceContains, shuffle };
