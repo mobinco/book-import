@@ -15,6 +15,7 @@ Check <code> book_test.js </code>
 
 ```
 import { Melli, Saman } from 'book_import';
+// or // const { Melli, Saman } = require('book_import');
 
 var melli = new Melli();
 var resMelli = await melli.SearchBook('مبین');
