@@ -16,11 +16,13 @@ async function searchBooks(text) {
     results?.forEach((row) => {
       const td = Array.from(row.querySelectorAll("td"));
       arrRet.push({
+        id: td[2]?.querySelector("a")?.href?.split("&id=")[1]?.split("&")[0],
         type: td[1]?.querySelector("img")?.title,
         image: baseUrl + td[1]?.querySelector("img")?.src,
         title: td[2]?.querySelector("a")?.innerHTML?.replace(/\n/g, "").trim(),
         link: baseUrl + td[2]?.querySelector("a")?.href,
         author: td[4]?.textContent?.replace(/\n/g, "").trim(),
+        publisher: null,
         publicationDate: td[6]?.textContent?.replace(/\n/g, "").trim()
       });
     });

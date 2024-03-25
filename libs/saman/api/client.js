@@ -31,7 +31,7 @@ async function searchBooks(text) {
       arrRet.push({
         id: row.RecordNumber,
         type: 'کتاب',
-        image: '',
+        image: `${baseUrl}/Content/materialIcons/1.png`,
         title: row.Titles?.trim(),
         link: `${baseUrl}/Search/FSearch/GetBookDetailsN/?recordNumber=${row.RecordNumber}`,
         author: row.Creators?.trim(),
