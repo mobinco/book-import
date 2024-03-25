@@ -14,7 +14,7 @@ const test = async () => {
     var resSaman = await saman.SearchBook('مبین');
     console.log(resSaman);
     if (resSaman.length > 0) {
-        var s = await saman.GetBookById(resSaman[0]?.RecordNumber);
+        var s = await saman.GetBookById(resSaman[0]?.id);
         console.log(s);
     }    
 }

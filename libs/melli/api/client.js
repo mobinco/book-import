@@ -20,7 +20,7 @@ async function searchBooks(text) {
         image: baseUrl + td[1]?.querySelector("img")?.src,
         title: td[2]?.querySelector("a")?.innerHTML?.replace(/\n/g, "").trim(),
         link: baseUrl + td[2]?.querySelector("a")?.href,
-        publisher: td[4]?.textContent?.replace(/\n/g, "").trim(),
+        author: td[4]?.textContent?.replace(/\n/g, "").trim(),
         publicationDate: td[6]?.textContent?.replace(/\n/g, "").trim()
       });
     });

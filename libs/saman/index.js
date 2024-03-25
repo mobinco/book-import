@@ -16,7 +16,7 @@ module.exports = class Saman {
       return console.error(ErrNoBook);
     }
     
-    return result.data;
+    return result;
   }
 
   async GetBookById(id, ...args) {
@@ -25,9 +25,7 @@ module.exports = class Saman {
       //throw new Error(ErrNoBook);
       return console.error(ErrNoBook);
     }
+    
     return res;
   }
-
 }
-
-
