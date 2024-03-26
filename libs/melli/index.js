@@ -28,6 +28,12 @@ module.exports = class Melli {
     return result;
   }
 
+  async NewBook(url) {
+    const res = await axios.get(url);
+    const doc = cheerio.load(await res.data);
+    return new Melli(url, doc);
+  }
+
   async NewBookByISBN(isbn, ...args) {
     const url = await api.getBookURLByISBN(isbn, ...args);
     if (!url) {
@@ -39,10 +45,11 @@ module.exports = class Melli {
     return new Melli(url, doc);
   }
 
-  async NewBook(url) {
-    const res = await axios.get(url);
+  async GetBookById(id) {
+    const res = await api.getBookById(id);
     const doc = cheerio.load(await res.data);
-    return new Melli(url, doc);
+    const melli = new Melli('', doc);
+    return melli.All();
   }
 
   All = () => {

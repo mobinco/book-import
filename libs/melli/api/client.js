@@ -39,6 +39,16 @@ async function searchBooks(text) {
   }
 }
 
+async function getBookById(id) {
+  const searchURL = `${baseUrl}/opac-prod/bibliographic/${id}`;
+  try {
+    const res = await axios.get(searchURL);
+    return res;
+  } catch (err) {
+    throw err;
+  }
+}
+
 async function getBookURLByISBN(isbn, ...args) {
   const searchURL = `${baseUrl}/opac-prod/search/bibliographicSimpleSearchProcess.do?simpleSearch.value=${isbn}&bibliographicLimitQueryBuilder.biblioDocType=BF&simpleSearch.indexFieldId=&command=I&simpleSearch.tokenized=true&classType=0`;
   try {
@@ -81,4 +91,4 @@ async function getBookURLByISBN(isbn, ...args) {
   }
 }
 
-module.exports = { searchBooks, getBookURLByISBN, baseUrl };
+module.exports = { searchBooks, getBookById, getBookURLByISBN, baseUrl };

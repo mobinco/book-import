@@ -6,8 +6,8 @@ const test = async () => {
     var resMelli = await melli.SearchBook('مبین');
     console.log(resMelli);
     if (resMelli.length > 0) {
-        var m = await melli.NewBook(resMelli[0]?.link);
-        console.log(m.All());
+        var m = await melli.GetBookById(resMelli[0]?.id);
+        console.log(m);
     }
     
     var saman = new Saman();
