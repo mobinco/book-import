@@ -57,6 +57,8 @@ module.exports = class Melli {
       name: this.Name(),
       author: this.Author(),
       publisher: this.Publisher(),
+      publicationPlace: this.PublicationPlace(),
+      publicationDate: this.PublicationDate(),
       subject: this.Subject(),
       originalName: this.OriginalName(),
       appearance: this.Appearance(),
@@ -91,7 +93,26 @@ module.exports = class Melli {
   Publisher() {
     const text = this.getField("\u200fمشخصات نشر");
     if (text) {
-      return this.publisherFromField(text);
+      const pub = this.publisherFromField(text);
+      return pub[0];
+    }
+    return "";
+  }
+
+  PublicationPlace() {
+    const text = this.getField("\u200fمشخصات نشر");
+    if (text) {
+      const pub = this.publisherFromField(text);
+      return pub[1];
+    }
+    return "";
+  }
+
+  PublicationDate() {
+    const text = this.getField("\u200fمشخصات نشر");
+    if (text) {
+      const pub = this.publisherFromField(text);
+      return pub[2];
     }
     return "";
   }
@@ -100,18 +121,26 @@ module.exports = class Melli {
     text = text.replace(/٬/g, "،");
     text = text.replace(/؛/g, "،");
     text = text.replace(/:[\s\x{200f}\x{202b}]+:/g, ":");
-    let splitted = text.split(":");
-    if (splitted.length < 2) {
-      return "";
+    let splitted1 = text.split(":");
+    if (splitted1.length < 2) {
+      return [splitted1[0], '', ''];
     }
-    splitted = splitted[1].split("،");
-    if (splitted.length === 0) {
-      return "";
+    let splitted2 = splitted1[1].split("،");
+    if (splitted2.length === 1) {
+      return [splitted2[0], splitted1[0], ''];
     }
-    let name = util.clean(splitted[0]);
+    let name = util.clean(splitted2[0]);
     name = name.replace(/^نشر /, "");
     name = name.replace(/^انتشارات /, "");
-    return name;
+    return [splitted2[0], splitted1[0], splitted2[1]];
+  }
+
+  PublicationDate() {
+    const text = this.getField("\u200fمشخصات نشر");
+    if (text) {
+      return this.publisherFromField(text);
+    }
+    return "";
   }
 
   Author() {
