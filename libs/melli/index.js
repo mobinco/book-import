@@ -112,7 +112,7 @@ module.exports = class Melli {
     const text = this.getField("\u200fمشخصات نشر");
     if (text) {
       const pub = this.publisherFromField(text);
-      return pub[2];
+      return pub[2]?.trim()?.replace(/\.|‬/g, '');
     }
     return "";
   }
