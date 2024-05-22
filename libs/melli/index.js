@@ -132,15 +132,7 @@ module.exports = class Melli {
     let name = util.clean(splitted2[0]);
     name = name.replace(/^نشر /, "");
     name = name.replace(/^انتشارات /, "");
-    return [splitted2[0], splitted1[0], splitted2[1]];
-  }
-
-  PublicationDate() {
-    const text = this.getField("\u200fمشخصات نشر");
-    if (text) {
-      return this.publisherFromField(text);
-    }
-    return "";
+    return [name, splitted1[0], splitted2[1]];
   }
 
   Author() {
