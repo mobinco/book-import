@@ -13,7 +13,7 @@ Getting documents data from http://opac.nlai.ir & https://samanpl.ir
 # Using
 Check <code> book_test.js </code>
 
-```
+```js
 import { Melli, Saman } from 'book_import';
 // or // const { Melli, Saman } = require('book_import');
 

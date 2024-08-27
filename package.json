@@ -1,7 +1,7 @@
 {
   "name": "book-import",
   "version": "1.0.0",
-  "description": "Getting document data from nlai.ir & samanpl.ir",
+  "description": "Getting document data from nlai.ir & samanpl.ir & loc.gov",
   "main": "index.js",
   "types": "index.js",
   "dependencies": {
@@ -83,9 +83,12 @@
   "keywords": [
     "opan.nlai.ir",
     "samanpl.ir",
-    "کتابشناسی",
-    "ملی",
-    "سامان"
+    "loc.gov",
+    "کتابشناسی ملی",
+    "سامان",
+    "کتابخانه های عمومی",
+    "کتابخانه کنگره",
+    "library of congress"
   ],
   "author": "MobinSoft.net",
   "license": "ISC",
