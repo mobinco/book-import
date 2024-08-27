@@ -1,6 +1,6 @@
 # book-import
 
-Getting documents data from http://opac.nlai.ir & https://samanpl.ir
+Getting documents data from http://opac.nlai.ir & https://samanpl.ir & https://www.loc.gov
 
 ورود اطلاعات اسناد از سایت کتابشناسی ملی و نرم افزار سامان
 
