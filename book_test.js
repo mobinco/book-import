@@ -6,24 +6,24 @@ const test = async () => {
     var resMelli = await melli.SearchBook('مبین');
     console.log(resMelli);
     if (resMelli.length > 0) {
-        var m = await melli.GetBookById(resMelli[0]?.id);
-        console.log(m);
+        var res = await melli.GetBookById(resMelli[0]?.id);
+        console.log(res);
     }
     
     var saman = new Saman();
     var resSaman = await saman.SearchBook('مبین');
     console.log(resSaman);
     if (resSaman.length > 0) {
-        var s = await saman.GetBookById(resSaman[0]?.id);
-        console.log(s);
+        var res = await saman.GetBookById(resSaman[0]?.id);
+        console.log(res);
     }
 
     var congress = new Congress();
     var resCongress = await congress.SearchBook('mobin');
     console.log(resCongress);
     if (resCongress.length > 0) {
-        var s = await congress.GetBookById(resCongress[0]?.id);
-        console.log(s);
+        var res = await congress.GetBookById(resCongress[0]?.id);
+        console.log(res);
     }
 }
 
