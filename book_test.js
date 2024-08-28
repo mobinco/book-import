@@ -19,7 +19,7 @@ const test = async () => {
     }
 
     var congress = new Congress();
-    var resCongress = await congress.SearchBook('مبین');
+    var resCongress = await congress.SearchBook('mobin');
     console.log(resCongress);
     if (resCongress.length > 0) {
         var s = await congress.GetBookById(resCongress[0]?.id);
