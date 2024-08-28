@@ -81,8 +81,22 @@ async function getBookById(id, ...args) {
 function getPublisher(strPublished) {
   let arrRet = [];
   let arrPub = strPublished?.split(': ');
-  arrRet[0] = arrPub[0]?.trim();
-  if (arrPub.length > 1) arrRet[1] = arrPub[1]?.split(',')[0]?.trim();
+  if (arrPub?.length > 0) {
+    arrRet[0] = arrPub[0]?.trim();
+    if (arrPub.length > 1) arrRet[1] = arrPub[1]?.split(',')[0]?.trim();
+  } else {
+    arrPub = strPublished?.split(', ');
+    if (arrPub?.length >= 3 && arrPub[2]?.trim() == parseInt(arrPub[2]?.trim())) {
+      arrRet[0] = arrPub[0]?.trim() + ', ' + arrPub[1]?.trim();
+      arrRet[1] = arrPub[2]?.trim();
+    } else if (arrPub?.length == 2) {
+      arrRet[0] = arrPub[0]?.trim();
+      arrRet[1] = arrPub[1]?.trim();
+    } else {
+      arrRet[0] = arrPub[0]?.trim();
+      arrRet[1] = '';
+    }
+  }
 
   return arrRet;
 }
