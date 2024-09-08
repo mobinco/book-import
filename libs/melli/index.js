@@ -231,8 +231,8 @@ module.exports = class Melli {
   Price() {
     let text = this.getField("\u200fشابک");
     if (text) {
-      const splitted = util.clean(text.replace("\u202C", ":"))?.replace(/::/g, ":")?.split(":");
-      text = splitted[1] ? splitted[0] : "";
+      const splitted = text.split(":");
+      text = util.clean(splitted[1] ? splitted[0] : "");
       return text;
     }
     return "";
@@ -326,7 +326,7 @@ module.exports = class Melli {
     const text = this.getField("\u200fشابک");
     if (text) {
       let ret = "";
-      const splitted = text.replace("\u202C", ":")?.split("؛");
+      const splitted = text.split("؛");
       splitted.forEach((s) => {
         const ss = s.split(":");
         ret += util.clean(ss.length > 1 ? ss[1].trim() : ss[0].trim()) + ", ";
