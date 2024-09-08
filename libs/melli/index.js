@@ -329,7 +329,7 @@ module.exports = class Melli {
       const splitted = text.split("؛");
       splitted.forEach((s) => {
         const ss = s.split(":");
-        if (ss.length > 1) ret += ss[1].trim() + ",";
+        ret += (ss.length > 1 ? ss[1].trim() : ss[0].trim()) + ",";
       });
       return ret.replace(/,$/, "");
     }
