@@ -133,7 +133,7 @@ module.exports = class Melli {
     let name = util.clean(splitted2[spl2len <= 2 ? 0 : 1]);
     name = name.replace(/^نشر /, "");
     name = name.replace(/^انتشارات /, "");
-    return [name, splitted1[0] + spl2len > 2 ? (': ' + splitted2[0]) : '', splitted2[spl2len - 1]];
+    return [name, splitted1[0] + (spl2len > 2 ? ': ' + splitted2[0] : ''), splitted2[spl2len - 1]];
   }
 
   Author() {
