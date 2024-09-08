@@ -232,7 +232,7 @@ module.exports = class Melli {
     let text = this.getField("\u200fشابک");
     if (text) {
       const splitted = text.split(":");
-      text = util.clean(splitted[0]);
+      text = util.clean(splitted[1] ? splitted[0] : '');
       return text;
     }
     return "";
