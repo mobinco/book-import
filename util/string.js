@@ -21,6 +21,9 @@ function clean(s) {
   s = s?.replace(/  /g, " ");
   
   s = s?.replace(/\u200c\u200c/g, "\u200c");
+
+  s = s?.replace(/\u200E|\u202C/g, "");
+
   if (s?.endsWith('\u200C')) {
     s = s?.substring(0, s.length - 1);
   }

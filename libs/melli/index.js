@@ -188,14 +188,14 @@ module.exports = class Melli {
       ln = "";
     }
     let name = `${fn} ${ln}`;
-    name = name.trim();
+    name = util.clean(name.trim());
     return name;
   }
 
   Subject() {
     let text = this.getField("\u200fموضوع");
     if (text) {
-      text = text.trim().split("\n");
+      text = util.clean(text.trim()).split("\n");
       return text;
     }
     return "";
@@ -213,7 +213,7 @@ module.exports = class Melli {
       text = text.replace(/\u200e/g, "");
       text = text.replace(reCleanPubDate, "");
       text = text.replace(/,/g, "");
-      const name = text.trim(".[] ");
+      const name = util.clean(text.trim(".[] "));
       return name;
     }
     return "";
@@ -329,7 +329,7 @@ module.exports = class Melli {
       const splitted = text.split("؛");
       splitted.forEach((s) => {
         const ss = s.split(":");
-        ret += (ss.length > 1 ? ss[1].trim() : ss[0].trim()) + ",";
+        ret += util.clean(ss.length > 1 ? ss[1].trim() : ss[0].trim()) + ", ";
       });
       return ret.replace(/,$/, "");
     }
