@@ -331,7 +331,7 @@ module.exports = class Melli {
         const ss = s.split(":");
         ret += util.clean(ss.length > 1 ? ss[1].trim() : ss[0].trim()) + ", ";
       });
-      return ret.replace(/,$/, "");
+      return ret.replace(/, $/, "");
     }
     return "";
   }
