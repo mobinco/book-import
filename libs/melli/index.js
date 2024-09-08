@@ -126,13 +126,14 @@ module.exports = class Melli {
       return [splitted1[0], '', ''];
     }
     let splitted2 = splitted1[1].split("،");
-    if (splitted2.length === 1) {
+    const spl2len = splitted2.length;
+    if (spl2len === 1) {
       return [splitted2[0], splitted1[0], ''];
     }
-    let name = util.clean(splitted2[0]);
+    let name = util.clean(splitted2[spl2len <= 2 ? 0 : 1]);
     name = name.replace(/^نشر /, "");
     name = name.replace(/^انتشارات /, "");
-    return [name, splitted1[0], splitted2[1]];
+    return [name, splitted1[0], splitted2[spl2len - 1]];
   }
 
   Author() {
