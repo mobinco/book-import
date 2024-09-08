@@ -1,16 +1,19 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
-const util = require('../../util/string.js');
-const api = require('./api/client.js');
+const axios = require("axios");
+const cheerio = require("cheerio");
+const util = require("../../util/string.js");
+const api = require("./api/client.js");
 
 // variables
-const reTranslators       = new RegExp('(?:(?:[\\[\\(])?(?:\\s)?(?:ترجمه(?:(?:\\x{200c})+ی)?|مترجم(?:ان|ین)?)(?: \\[?و (?:[\\[\\(])?(?:تنظیم|گردآوری|گردآورنده|سرپرستی|تدوین|تالیف|انطباق فرهنگی|ویرایش|بومی\\x{200c}سازی|ترانه\\x{200c}سرا|ترانه سرا|شعرهای|انتخاب|نگارش|ویراستار|بازآفرینی|بررسی|تحقیق|شرح)(?:[\\]\\)])?)?(?:\\s)?(?:[\\]\\)])?)(.+?)(?:؛|\\.|\\]|$)', '')
-const reCleanPubDate      = new RegExp('(\\[.*\\]|[,.]\\s?c?\\[?\\d{4}\\]?.?$)', '');
-const reCleanDoubleColon  = new RegExp(':[\\s\\x{200f}\\x{202b}]+:', '');
-const reSerie             = new RegExp('[^\\.]+؛[۰-۹\\s]+', '');
-const reNumber            = new RegExp('[0-9۰-۹]', '');
+const reTranslators = new RegExp(
+  "(?:(?:[\\[\\(])?(?:\\s)?(?:ترجمه(?:(?:\\x{200c})+ی)?|مترجم(?:ان|ین)?)(?: \\[?و (?:[\\[\\(])?(?:تنظیم|گردآوری|گردآورنده|سرپرستی|تدوین|تالیف|انطباق فرهنگی|ویرایش|بومی\\x{200c}سازی|ترانه\\x{200c}سرا|ترانه سرا|شعرهای|انتخاب|نگارش|ویراستار|بازآفرینی|بررسی|تحقیق|شرح)(?:[\\]\\)])?)?(?:\\s)?(?:[\\]\\)])?)(.+?)(?:؛|\\.|\\]|$)",
+  ""
+);
+const reCleanPubDate = new RegExp("(\\[.*\\]|[,.]\\s?c?\\[?\\d{4}\\]?.?$)", "");
+const reCleanDoubleColon = new RegExp(":[\\s\\x{200f}\\x{202b}]+:", "");
+const reSerie = new RegExp("[^\\.]+؛[۰-۹\\s]+", "");
+const reNumber = new RegExp("[0-9۰-۹]", "");
 // errors
-const ErrNoBook           = "no book found";
+const ErrNoBook = "no book found";
 
 module.exports = class Melli {
   constructor(url, doc) {
@@ -24,7 +27,7 @@ module.exports = class Melli {
       //throw new Error(ErrNoBook);
       return console.error(ErrNoBook);
     }
-    
+
     return result;
   }
 
@@ -48,7 +51,7 @@ module.exports = class Melli {
   async GetBookById(id) {
     const res = await api.getBookById(id);
     const doc = cheerio.load(await res.data);
-    const melli = new Melli('', doc);
+    const melli = new Melli("", doc);
     return melli.All();
   }
 
@@ -71,9 +74,9 @@ module.exports = class Melli {
       biblioInfo: this.BiblioInfo(),
       translators: this.Translators(),
       series: this.Series(),
-      link: this.Link()
+      link: this.Link(),
     };
-  }
+  };
 
   Name = () => {
     const text = this.getField("\u200fعنوان و نام پديدآور");
@@ -81,7 +84,7 @@ module.exports = class Melli {
       return this.nameFromField(text);
     }
     return "";
-  }
+  };
 
   nameFromField(text) {
     const splitted = text.split("/");
@@ -112,7 +115,7 @@ module.exports = class Melli {
     const text = this.getField("\u200fمشخصات نشر");
     if (text) {
       const pub = this.publisherFromField(text);
-      return pub[2]?.trim()?.replace(/\.|‬/g, '');
+      return pub[2]?.trim()?.replace(/\.|‬/g, "");
     }
     return "";
   }
@@ -123,17 +126,21 @@ module.exports = class Melli {
     text = text.replace(/:[\s\x{200f}\x{202b}]+:/g, ":");
     let splitted1 = text.split(":");
     if (splitted1.length < 2) {
-      return [splitted1[0], '', ''];
+      return [splitted1[0], "", ""];
     }
     let splitted2 = splitted1[1].split("،");
     const spl2len = splitted2.length;
     if (spl2len === 1) {
-      return [splitted2[0], splitted1[0], ''];
+      return [splitted2[0], splitted1[0], ""];
     }
     let name = util.clean(splitted2[spl2len <= 2 ? 0 : 1]);
     name = name.replace(/^نشر /, "");
     name = name.replace(/^انتشارات /, "");
-    return [name, splitted1[0] + (spl2len > 2 ? ':' + splitted2[0] : ''), splitted2[spl2len - 1]];
+    return [
+      name,
+      splitted1[0] + (spl2len > 2 ? ":" + splitted2[0] : ""),
+      splitted2[spl2len - 1],
+    ];
   }
 
   Author() {
@@ -150,7 +157,7 @@ module.exports = class Melli {
     text = this.getField("\u200fعنوان و نام پديدآور");
     if (text) {
       const splitted = text.split("/");
-      let author = util.clean(splitted[1]?.trim());
+      let author = util.clean(splitted[1]?.trim() || splitted[0]?.trim());
       return [author, ""];
     }
     return ["", ""];
@@ -241,7 +248,7 @@ module.exports = class Melli {
         arrNotes.push(text);
       }
     });
-    
+
     return arrNotes;
   }
 
@@ -304,7 +311,11 @@ module.exports = class Melli {
     ss = text.split("،");
     for (const s of ss) {
       const cleaned = util.clean(s);
-      if (cleaned.length !== 0 && !cleaned.includes("[") && !cleaned.includes("]")) {
+      if (
+        cleaned.length !== 0 &&
+        !cleaned.includes("[") &&
+        !cleaned.includes("]")
+      ) {
         translators.push(cleaned);
       }
     }
@@ -320,7 +331,7 @@ module.exports = class Melli {
         const ss = s.split(":");
         if (ss.length > 1) ret += ss[1].trim() + ",";
       });
-      return ret.replace(/,$/,"");
+      return ret.replace(/,$/, "");
     }
     return "";
   }
@@ -336,10 +347,13 @@ module.exports = class Melli {
     if (biblioId) return `${api.baseUrl}/opac-prod/bibliographic/${biblioId}`;
     */
     let ret = "";
-    const $ = cheerio.load('<html>');
+    const $ = cheerio.load("<html>");
     this.doc("td").each((i, sel) => {
-      if ($(sel).text().indexOf("آدرس ثابت") >= 0 && $(sel).text().length < 100) {
-        ret = $(sel).next()?.find('a')?.first()?.attr('href');
+      if (
+        $(sel).text().indexOf("آدرس ثابت") >= 0 &&
+        $(sel).text().length < 100
+      ) {
+        ret = $(sel).next()?.find("a")?.first()?.attr("href");
         return false;
       }
       return true;
@@ -374,9 +388,9 @@ module.exports = class Melli {
 
   getField(key) {
     let ret = "";
-    const $ = cheerio.load('<html>');
+    const $ = cheerio.load("<html>");
     this.doc("td").each((i, sel) => {
-      if ($(sel).text()?.replace(/\s\s+/g, ' ') === key) {
+      if ($(sel).text()?.replace(/\s\s+/g, " ") === key) {
         ret = $(sel)?.next()?.next()?.text();
         return false;
       }
@@ -384,17 +398,15 @@ module.exports = class Melli {
     });
     return ret;
   }
-  
+
   getFields(key) {
     let arrRet = [];
-    const $ = cheerio.load('<html>');
+    const $ = cheerio.load("<html>");
     this.doc("td").each((i, sel) => {
-      if ($(sel).text()?.replace(/\s\s+/g, ' ') === key) {
+      if ($(sel).text()?.replace(/\s\s+/g, " ") === key) {
         arrRet.push($(sel)?.next()?.next()?.text());
       }
     });
     return arrRet;
   }
-}
-
-
+};
