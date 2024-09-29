@@ -64,7 +64,7 @@
     "webidl-conversions": "^7.0.0",
     "whatwg-encoding": "^2.0.0",
     "whatwg-mimetype": "^3.0.0",
-    "whatwg-url": "^11.0.0",
+    "whatwg-url": "^14.0.0",
     "ws": "^8.16.0",
     "xml-name-validator": "^4.0.0",
     "xmlchars": "^2.2.0"
