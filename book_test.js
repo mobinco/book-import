@@ -1,4 +1,4 @@
-const { Melli, Saman, Congress } = require('./index.js');
+const { Melli, Saman, Congress, Nlm } = require('./index.js');
 const { checkSliceEq } = require('./util/slice.js');
 
 const test = async () => {
@@ -23,6 +23,14 @@ const test = async () => {
     console.log(resCongress);
     if (resCongress.length > 0) {
         var res = await congress.GetBookById(resCongress[0]?.id);
+        console.log(res);
+    }
+    
+    var nlm = new Nlm();
+    var resNlm = await nlm.SearchBook('mobin');
+    console.log(resNlm);
+    if (resNlm.length > 0) {
+        var res = await nlm.GetBookById(resNlm[0]?.id);
         console.log(res);
     }
 }

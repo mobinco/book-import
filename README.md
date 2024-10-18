@@ -1,10 +1,10 @@
 # book-import
 
-Getting documents data from http://opac.nlai.ir & https://samanpl.ir & https://www.loc.gov
+Getting documents data from http://opac.nlai.ir | https://samanpl.ir | https://www.loc.gov | https://nlm.nih.gov
 
-ورود اطلاعات اسناد از سایت کتابشناسی ملی، سامانه‌ی کتابخانه‌های عمومی و کتابخانه‌ی کنگره
+ورود اطلاعات اسناد از سایت کتابشناسی ملی، سامانه‌ی کتابخانه‌های عمومی، کتابخانه‌ی کنگره و کتابخانه‌ی ملی پزشکی
 
-برگرفته از https://github.com/ketabchi/melli
+طرح اولیه از https://github.com/ketabchi/melli
 
 
 # Install
@@ -14,8 +14,8 @@ Getting documents data from http://opac.nlai.ir & https://samanpl.ir & https://w
 Check <code> book_test.js </code>
 
 ```js
-import { Melli, Saman } from 'book_import';
-// or // const { Melli, Saman } = require('book_import');
+import { Melli, Saman, Congress, Nlm } from 'book_import';
+// or // const { Melli, Saman, Congress, Nlm } = require('book_import');
 
 var melli = new Melli();
 var resMelli = await melli.SearchBook('مبین');
@@ -38,6 +38,14 @@ var resCongress = await congress.SearchBook('مبین');
 console.log(resCongress);
 if (resCongress.length > 0) {
     var s = await congress.GetBookById(resCongress[0]?.id);
+    console.log(s);
+}
+
+var nlm = new Nlm();
+var resNlm = await nlm.SearchBook('Child');
+console.log(resNlm);
+if (resNlm.length > 0) {
+    var s = await nlm.GetBookById(resNlm[0]?.id);
     console.log(s);
 }
 ```

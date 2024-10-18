@@ -1,7 +1,7 @@
 {
   "name": "book-import",
-  "version": "1.0.0",
-  "description": "Getting document data from nlai.ir & samanpl.ir & loc.gov",
+  "version": "1.0.1",
+  "description": "Getting document data from nlai.ir, samanpl.ir, loc.gov, nlm.nih.gov",
   "main": "index.js",
   "types": "index.js",
   "dependencies": {
@@ -79,11 +79,14 @@
     "opan.nlai.ir",
     "samanpl.ir",
     "loc.gov",
+    "nlm.nih.gov",
     "کتابشناسی ملی",
     "سامان",
     "کتابخانه های عمومی",
     "کتابخانه کنگره",
-    "library of congress"
+    "کتابخانه ملی پزشکی",
+    "library of congress",
+    "national library of medicine"
   ],
   "author": "MobinSoft.net",
   "license": "ISC",
