@@ -1,12 +1,14 @@
 const axios = require('axios');
 const { JSDOM } = require('jsdom');
 //import stringSimilarity from 'string-similarity';
-const { clean } = require('../../../util/string.js'); // Assuming util.js exists and has a clean function similar to the JavaScript version
+const { clean, isNumber } = require('../../../util/string.js'); // Assuming util.js exists and has a clean function similar to the JavaScript version
 
 const baseUrl = 'http://opac.nlai.ir';
 
 async function searchBooks(text) {
-  const searchURL = `${baseUrl}/opac-prod/search/bibliographicSimpleSearchProcess.do?simpleSearch.value=${text}&bibliographicLimitQueryBuilder.biblioDocType=${''}&simpleSearch.indexFieldId=&command=I&simpleSearch.tokenized=true&classType=0`;
+  let searchURL = `${baseUrl}/opac-prod/search/bibliographicSimpleSearchProcess.do?simpleSearch.value=${text}&bibliographicLimitQueryBuilder.biblioDocType=${''}&command=I&simpleSearch.tokenized=true&classType=0`;
+  if (text?.length >= 10 && isNumber(text)) searchURL += '&simpleSearch.indexFieldId=221091';
+
   try {
     const res = await axios.get(searchURL);
     const dom = new JSDOM(res.data);

@@ -33,4 +33,8 @@ function clean(s) {
   return s?.trim();
 }
 
-module.exports = { filter, clean };
+function isNumber(n) {
+  return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
+}
+
+module.exports = { filter, clean, isNumber };
