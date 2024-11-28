@@ -125,10 +125,10 @@ module.exports = class Melli {
     text = text.replace(/؛/g, "،");
     text = text.replace(/:[\s\x{200f}\x{202b}]+:/g, ":");
     let splitted1 = text.split(":");
-    if (splitted1.length < 2) {
+    if (splitted1.length <= 1) {
       return [splitted1[0], "", ""];
     }
-    let splitted2 = splitted1[1].split("،");
+    let splitted2 = (splitted1[1] + (splitted1.length > 2 ? ':' + splitted1[2] : '')).split("،");
     const spl2len = splitted2.length;
     if (spl2len === 1) {
       return [splitted2[0], splitted1[0], ""];
@@ -231,8 +231,8 @@ module.exports = class Melli {
   Price() {
     let text = this.getField("\u200fشابک");
     if (text) {
-      const splitted = text.split(":");
-      text = util.clean(splitted[1] ? splitted[0] : "");
+      const splitted = text.split("ریال");
+      text = util.clean(splitted[1] ? splitted[0] : "") + " ریال";
       return text;
     }
     return "";
@@ -328,8 +328,8 @@ module.exports = class Melli {
       let ret = "";
       const splitted = text.split("؛");
       splitted.forEach((s) => {
-        const ss = s.split(":");
-        ret += util.clean(ss.length > 1 ? ss[1].trim() : ss[0].trim()) + ", ";
+        const ss = s.split("ریال");
+        ret += util.clean(ss.length > 1 ? ss[1] : ss[0]).replace(/\:/, "").trim() + ", ";
       });
       return ret.replace(/, $/, "");
     }
